@@ -1,0 +1,13 @@
+// data model for tasks
+
+class Task {
+  final String id;
+  final String name;
+  final String completed;
+
+  Task({required this.id, required this.name, required this.completed});
+
+  factory Task.fromMap(String id, Map<String, dynamic> data) {
+    return Task(id: id, name: data['name'], completed: data['completed']);
+  }
+}
