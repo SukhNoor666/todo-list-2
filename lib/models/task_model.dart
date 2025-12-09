@@ -8,6 +8,6 @@ class Task {
   Task({required this.id, required this.name, required this.completed});
 
   factory Task.fromMap(String id, Map<String, dynamic> data) {
-    return Task(id: id, name: data['name'], completed: data['completed']);
+    return Task(id: id, name: data['name'] ?? '', completed: data['completed'] ?? false,);
   }
 }
