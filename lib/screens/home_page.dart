@@ -7,6 +7,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:myapp/screens/components/build_task_list.dart';
 import 'package:myapp/screens/components/build_add_task_section.dart';
 
+// main screen of the app
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -20,15 +21,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // the top most bar with title
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Row(
           children: [
+            // the rdp logo on the left
             Expanded(child: Image.asset('assets/rdplogo.png', height: 80)),
             Text(
+              // title of the app on the right
               'Daily Planner',
               style: TextStyle(
-                fontFamily: 'Caveat',
+                fontFamily: 'Caveat', // font for the title
                 fontSize: 32,
                 color: Colors.white,
               ),
@@ -36,15 +40,19 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      //side menu drawer on the left
       drawer: Drawer(),
+      // the main content
       body: Column(
         children: [
+          // importing a calendar
           TableCalendar(
             calendarFormat: CalendarFormat.month,
             focusedDay: DateTime.now(),
             firstDay: DateTime(2025),
             lastDay: DateTime(2027),
           ),
+          // lists of tasks
           Consumer<TaskProvider>(
             builder: (context, taskProvider, child) {
               return buildTaskList(
@@ -54,6 +62,7 @@ class _HomePageState extends State<HomePage> {
               );
             },
           ),
+          // add task option
           Consumer<TaskProvider>(
             builder: (context, taskProvider, child) {
               return buildAddTaskSection(nameController, () async {

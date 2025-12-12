@@ -3,17 +3,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:myapp/models/task_model.dart';
 
 class TaskService {
+  // connects with firestore
   final FirebaseFirestore db = FirebaseFirestore.instance;
   final List<Task> tasks = [];
 
   //Fetch all the tasks from the database and convert them to a list of Task objects
   Future<List<Task>> fetchTasks() async {
-    final snapshot = await db.collection('tasks').orderBy('timestamp').get();
+    final snapshot = await db
+        .collection('tasks')
+        .orderBy('timestamp')
+        .get(); // asks for all tasks and sorts them
     return snapshot.docs
         .map((doc) => Task.fromMap(doc.id, doc.data()))
         .toList();
   }
 
+  // function to add task
   Future<String> addTask(String name) async {
     final newTask = {
       'name': name,
@@ -29,6 +34,7 @@ class TaskService {
     await db.collection('tasks').doc(id).update({'completed': completed});
   }
 
+  // function to delete task
   Future<void> deleteTask(String id) async {
     await db.collection('tasks').doc(id).delete();
   }

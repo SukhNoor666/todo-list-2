@@ -4,7 +4,8 @@ class Task {
   final String id;
   final String name;
   final bool completed;
-
+  
+//Constructor to create a new task object
   Task({required this.id, required this.name, required this.completed});
 
   factory Task.fromMap(String id, Map<String, dynamic> data) {
